@@ -17,7 +17,7 @@
                 <div class="table table-responsive">
                     <table class="table-bordered" width="100%" cellspacing="0">
                         <thead>
-                        <tr>
+                        <tr class="bg-primary text-white text-center">
                             <th>ID</th>
                             <th>Title</th>
                             <th>Location</th>
@@ -29,7 +29,7 @@
                         </thead>
                         <tbody>
                         @forelse($items as $item)
-                            <tr>
+                            <tr class="text-center">
                                 <td>{{ $item->id }}</td>
                                 <td>{{ $item->title }}</td>
                                 <td>{{ $item->location }}</td>
