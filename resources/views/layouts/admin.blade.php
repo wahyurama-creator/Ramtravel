@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Ramtravel Admin - Dashboard</title>
+    <title>Ramtravel - Admin</title>
 
     @include('includes.admin.style')
 

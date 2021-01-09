@@ -27,6 +27,7 @@ Route::prefix('admin')
             ->name('dashboard');
 
         Route::resource('travel-package', 'TravelPackagesController');
+        Route::resource('gallery', 'GalleryController');
     });
 
 Auth::routes(['verify' => true]);
