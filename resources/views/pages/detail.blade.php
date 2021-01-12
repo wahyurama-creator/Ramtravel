@@ -22,117 +22,69 @@
                 <div class="row">
                     <div class="col-lg-8 pl-lg-0">
                         <div class="card card-details">
-                            <h1>Nusa Penida</h1>
-                            <p>Indonesia</p>
-                            <div class="gallery">
-                                <div class="xzoom-container">
-                                    <!-- Main Picture -->
-                                    <img
-                                        src="frontend/images/produk-1.jpg"
-                                        class="xzoom"
-                                        id="xzoom-default"
-                                        xoriginal="frontend/images/produk-1.jpg"
-                                    />
+                            <h1>{{ $items->title }}</h1>
+                            <p>{{ $items->location }}</p>
+                            @if($items->galleries->count())
+                                <div class="gallery">
+                                    <div class="xzoom-container">
+                                        <!-- Main Picture -->
+                                        <img
+                                            src="{{ Storage::url($items->galleries->first()->image) }}"
+                                            class="xzoom"
+                                            id="xzoom-default"
+                                            xoriginal="{{ Storage::url($items->galleries->first()->image) }}"
+                                        />
 
-                                    <div class="xzoom-thumbs">
-                                        <a href="frontend/images/produk-1-1.jpg">
-                                            <img
-                                                src="frontend/images/produk-1-1.jpg"
-                                                class="xzoom-gallery"
-                                                width="120"
-                                                xpreview="frontend/images/produk-1-1.jpg"
-                                                alt=""
-                                            />
-                                        </a>
-                                        <a href="frontend/images/produk-1.jpg">
-                                            <img
-                                                src="frontend/images/produk-1.jpg"
-                                                class="xzoom-gallery"
-                                                width="120"
-                                                xpreview="frontend/images/produk-1.jpg"
-                                                alt=""
-                                            />
-                                        </a>
-                                        <a href="frontend/images/produk-1.jpg">
-                                            <img
-                                                src="frontend/images/produk-1.jpg"
-                                                class="xzoom-gallery"
-                                                width="120"
-                                                xpreview="frontend/images/produk-1.jpg"
-                                                alt=""
-                                            />
-                                        </a>
-                                        <a href="frontend/images/produk-1.jpg">
-                                            <img
-                                                src="frontend/images/produk-1.jpg"
-                                                class="xzoom-gallery"
-                                                width="120"
-                                                xpreview="frontend/images/produk-1.jpg"
-                                                alt=""
-                                            />
-                                        </a>
-                                        <a href="frontend/images/produk-1.jpg">
-                                            <img
-                                                src="frontend/images/produk-1.jpg"
-                                                class="xzoom-gallery"
-                                                width="120"
-                                                xpreview="frontend/images/produk-1.jpg"
-                                                alt=""
-                                            />
-                                        </a>
+                                        <div class="xzoom-thumbs">
+                                            @foreach($items->galleries as $gallery)
+                                                <a href="{{ Storage::url($gallery->image) }}">
+                                                    <img
+                                                        src="{{ Storage::url($gallery->image) }}"
+                                                        class="xzoom-gallery"
+                                                        width="120"
+                                                        xpreview="{{ Storage::url($gallery->image) }}"
+                                                        alt=""
+                                                    />
+                                                </a>
+                                            @endforeach
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            @endif
                             <h2>Tentang Wisata</h2>
-                            <p>
-                                Nusa Penida adalah sebuah pulau bagian dari negara Republik
-                                Indonesia yang terletak di sebelah tenggara Bali yang
-                                dipisahkan oleh Selat Badung. Di dekat pulau ini terdapat juga
-                                pulau-pulau kecil lainnya yaitu Nusa Ceningan dan Nusa
-                                Lembongan. Perairan pulau Nusa Penida terkenal dengan kawasan
-                                selamnya di antaranya terdapat di Crystal Bay, Manta Point,
-                                Batu Meling, Batu Lumbung, Batu Abah, Toyapakeh dan Malibu
-                                Point.
-                            </p>
-                            <p>
-                                Perbukitan dan kapur karang merupakan kondisi tanah di pulau
-                                ini, salah satunya gunung bukit tertinggi bernama Gunung Mundi
-                                yang terletak di Kecamatan Nusa Penida. Sumber air adalah mata
-                                air dan sungai hanya terdapat di wilayah daratan Kabupaten
-                                Klungkung yang mengalir sepanjang tahun.
-                            </p>
+                            <p>{!! $items->about !!}</p>
                             <div class="features row">
                                 <div class="col-md-4">
                                     <img
-                                        src="frontend/images/icon-ticket.svg"
+                                        src="{{ url('frontend/images/icon-ticket.svg') }}"
                                         alt=""
                                         class="features-image"
                                     />
                                     <div class="description">
                                         <h3>Featured Event</h3>
-                                        <p>Tari Kecak</p>
+                                        <p>{{ $items->featured_event }}</p>
                                     </div>
                                 </div>
                                 <div class="col-md-4 border-left">
                                     <img
-                                        src="frontend/images/icon-language.svg"
+                                        src="{{ url('frontend/images/icon-language.svg') }}"
                                         alt=""
                                         class="features-image"
                                     />
                                     <div class="description">
                                         <h3>Language</h3>
-                                        <p>Bahasa Indonesia</p>
+                                        <p>{{ $items->language }}</p>
                                     </div>
                                 </div>
                                 <div class="col-md-4 border-left">
                                     <img
-                                        src="frontend/images/icon-food.svg"
+                                        src="{{ url('frontend/images/icon-food.svg') }}"
                                         alt=""
                                         class="features-image"
                                     />
                                     <div class="description">
                                         <h3>Foods</h3>
-                                        <p>Local Foods</p>
+                                        <p>{{ $items->foods }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -142,36 +94,49 @@
                         <div class="card card-details card-right">
                             <h2>Members are going</h2>
                             <div class="members my-2">
-                                <img src="frontend/images/testimonial-1.png" class="members-image mr-1" alt="">
-                                <img src="frontend/images/testimonial-2.png" class="members-image mr-1" alt="">
-                                <img src="frontend/images/testimonial-1.png" class="members-image mr-1" alt="">
-                                <img src="frontend/images/testimonial-2.png" class="members-image mr-1" alt="">
+                                <img src="{{ url('frontend/images/testimonial-1.png') }}" class="members-image mr-1"
+                                     alt="">
+                                <img src="{{ url('frontend/images/testimonial-2.png') }}" class="members-image mr-1"
+                                     alt="">
                             </div>
                             <hr/>
                             <h2>Trip Information</h2>
                             <table>
                                 <tr>
                                     <th width="50%">Date of Departure</th>
-                                    <td width="50%" class="text-right">30 November 2020</td>
+                                    <td width="50%" class="text-right">
+                                        {{ \Carbon\Carbon::create($items->date_of_departure)
+                                            ->format('F n, Y') }}
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th width="50%">Duration</th>
-                                    <td width="50%" class="text-right">3D 2N</td>
+                                    <td width="50%" class="text-right">{{ $items->duration }}</td>
                                 </tr>
                                 <tr>
                                     <th width="50%">Type</th>
-                                    <td width="50%" class="text-right">Open Trip</td>
+                                    <td width="50%" class="text-right">{{ $items->type }}</td>
                                 </tr>
                                 <tr>
                                     <th width="50%">Price</th>
-                                    <td width="50%" class="text-right">$80,00 / Person</td>
+                                    <td width="50%" class="text-right">${{ $items->price }},00 / Person</td>
                                 </tr>
                             </table>
                         </div>
                         <div class="join-container">
-                            <a href="{{ route('checkout') }}" class="btn btn-block btn-join-now mt-3 py-2"
-                            >Join Now</a
-                            >
+                            @auth()
+                                <form action="{{ route('checkout-process', $items->id) }}" method="post">
+                                    @csrf
+                                    <button class="btn btn-block btn-join-now mt-3 py-2">
+                                        Join Now
+                                    </button>
+                                </form>
+                            @endauth
+                            @guest()
+                                <a href="{{ route('login') }}" class="btn btn-block btn-join-now mt-3 py-2">
+                                    Login or Register to Join
+                                </a>
+                            @endguest
                         </div>
                     </div>
                 </div>
@@ -181,7 +146,7 @@
 @endsection
 
 @push('prepend-style')
-    <link rel="stylesheet" href="{{ url('frontend/libraries/xZoom/xzoom.css') }}" />
+    <link rel="stylesheet" href="{{ url('frontend/libraries/xZoom/xzoom.css') }}"/>
 @endpush
 
 @push('addon-script')
